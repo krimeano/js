@@ -1,3 +1,10 @@
+/**
+ * @param sources
+ * @param onFinished
+ *
+ * Example:
+ * loadImages({foo:'/images/bar.jpg', spam:'/images/egg.jpg'}, function(images){console.log('your staff here');});
+ */
 var loadImages = function (sources, onFinished) {
     var output = {},
         pp = [],
@@ -26,13 +33,8 @@ var loadImages = function (sources, onFinished) {
         if (!sources.hasOwnProperty(key)) {
             continue;
         }
-        pp.push(loadImg(this.constructImageUrl(sources[key]), key));
+        pp.push(loadImg(sources[key], key));
     }
     Promise.all(pp).then(handleLoaded);
 };
 
-
-var sources = {
-    foo: '/images/bar.jpg',
-    spam: '/images/egg.jpg'
-};
